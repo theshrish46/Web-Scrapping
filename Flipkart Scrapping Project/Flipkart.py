@@ -1,4 +1,4 @@
-import csv
+from csv import writer
 import pandas as pd
 import numpy as np
 import requests
@@ -34,5 +34,11 @@ item_mrp = soup.find_all('div', class_="_3I9_wc")
 item_dscnt = soup.find_all('div', class_="_3Ay6Sb")
 
 
-for i, j, k, l, m in zip(item_name, item_desc, item_mrp, item_cost, item_dscnt):
-    print(i.text + " " + j.text + " " + k.text + " " + l.text + " " + m.text, end='\n')
+# for i, j, k, l, m in zip(item_name, item_desc, item_mrp, item_cost, item_dscnt):
+#     print(i.text + " " + j.text + " " + k.text + " " + l.text + " " + m.text, end='\n')
+
+
+with open('flip.csv', 'w', encoding='utf8', newline='') as f:
+    thewriter = writer(f)
+    header = ['Name', 'Desc', 'Price', 'MRP', 'Dscnt']
+    thewriter.writerow(header)
